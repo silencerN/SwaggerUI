@@ -1,0 +1,16 @@
+{
+    "templateDir": "./codegen-templates",
+    "packageName": "",
+    "modelPackage": "",
+    "apiPackage": "",
+    "additionalProperties": {
+        "apiVersion": "V2"
+    },
+    "modelTemplateFiles": {
+    },
+    "apiTemplateFiles": {
+        "route.mustache": ".js"
+    },
+    "supportingFiles": {
+    }
+}

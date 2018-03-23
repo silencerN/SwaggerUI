@@ -1,0 +1,56 @@
+'use strict';
+var express = require('express');
+var router = express.Router();
+
+{{#operations}}
+    {{#operation}}
+        /**
+        {{#summary}}
+            * {{{summary}}}
+        {{/summary}}
+        {{#notes}}
+            * {{{notes}}}
+        {{/notes}}
+        *****
+        {{#allParams}}
+            * {{paramName}} [{{{dataType}}} ] {{{description}}}{{^required}} (optional){{/required}}
+        {{/allParams}}
+        {{^returnType}}
+            * no response value expected for this operation
+        {{/returnType}}
+        {{#returnType}}
+            * returns {{{returnType}}}
+        {{/returnType}}
+        **/
+router.get('/{{{operationId}}}',  function(req, res, next) {
+        var _callback=req.query.callback;
+        var callback = function (resultObj) {
+            if(!resultObj.Error){
+                res.send(_callback +"("+JSON.stringify(resultObj.Result)+")");
+            }else {
+                var errData={errCode: 404 ,errMsg:'Data could not be loaded or accessed.'};
+                res.send(_callback +"("+JSON.stringify(errData)+")");
+            }
+        };
+        remoteService.{{{operationId}}}(req, res, callback);
+/**
+{{#returnType}}
+    var examples = {};
+    {{#examples}}
+        examples['{{contentType}}'] = {{{example}}};
+    {{/examples}}
+    if (Object.keys(examples).length > 0) {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
+    } else {
+        res.end();
+    }
+{{/returnType}}
+{{^returnType}}
+        res.end();
+{{/returnType}}
+**/
+});
+
+    {{/operation}}
+{{/operations}}
