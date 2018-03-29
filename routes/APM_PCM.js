@@ -15,11 +15,11 @@ router.get('/codeGen', function(req, res, next) {
   child_process.execFile("run-local.bat",null,{cwd:path.resolve(__dirname,'../codegen')},function(error,stdout,stderr){
     if(error !==null){
       console.log("exec error"+error)
-      res.send('fail');
+      res.send({errcode:500,Msg:'Something err!'});
     }
     else {
       console.log("成功")
-      res.send('success');
+      res.send({errcode:200,Msg:'Success generate code!'});
     }
   })
 });
