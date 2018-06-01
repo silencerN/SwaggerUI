@@ -8,7 +8,7 @@
       "email": "taolian@novasoftware.cn"
     }
   },
-  "host": "localhost:3034",
+  "host": "localhost:5034",
   "basePath": "/CRM_React",
   "tags": [
     {
@@ -16,7 +16,7 @@
       "description": "Everything about her Pets",
       "externalDocs": {
         "description": "Find out more",
-        "url": "localhost:3034"
+        "url": "localhost:5034"
       }
     }
   ],
@@ -377,7 +377,7 @@
   "securityDefinitions": {
     "petstore_auth": {
       "type": "oauth2",
-      "authorizationUrl": "http://localhost:3034/oauth/dialog",
+      "authorizationUrl": "http://localhost:5034/oauth/dialog",
       "flow": "implicit",
       "scopes": {
         "write:pets": "modify pets in your account",
